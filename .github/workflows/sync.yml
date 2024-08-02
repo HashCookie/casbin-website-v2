@@ -1,0 +1,32 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v2
+        with:
+          repository: 上游仓库的用户名/上游仓库名
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout fork repository
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Sync with upstream
+        run: |
+          git config --global user.name 'HashCookie'
+          git config --global user.email 'HashCookie404@gmail.com'
+          git pull https://github.com/casbin/casbin-website-v2 master
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/HashCookie/casbin-website-v2.git master
