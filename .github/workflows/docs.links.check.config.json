@@ -1,4 +1,7 @@
 {
+    "dirs": ["docs"],
+    "files": ["**/*.md", "**/*.mdx"],
+    "useGitIgnore": true,
     "ignorePatterns": [
         {
             "pattern": "^(?!https?:\/\/)"

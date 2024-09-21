@@ -9,15 +9,11 @@ jobs:
   docs-links-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@master
-
+      - uses: actions/checkout@v4
+      
       - name: Check Links 🔎
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        uses: umbrelladocs/action-linkspector@v1
         with:
-          use-quiet-mode: 'yes' # only show errors in output.
-          # use-verbose-mode: 'yes' # show detailed HTTP status for checked links.
-          folder-path: 'docs/' # only check the docs/ folder
-          # refer to https://github.com/tcort/markdown-link-check#config-file-format
-          config-file: '.github/workflows/docs.links.check.config.json'
-          file-extension: '.md*' # .md or .mdx
+          reporter: github-pr-review
+          fail_on_error: true
+          config_file: '.github/workflows/docs.links.check.config.json'
