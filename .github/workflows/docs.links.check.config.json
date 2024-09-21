@@ -1,6 +1,6 @@
 {
     "dirs": ["docs"],
-    "files": ["**/*.md", "**/*.mdx"],
+    "files": ["docs/**/*.md", "docs/**/*.mdx"],
     "useGitIgnore": true,
     "ignorePatterns": [
         {
